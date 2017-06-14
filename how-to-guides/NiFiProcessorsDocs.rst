@@ -260,3 +260,46 @@ Refer to the Data Confidence Invalid Records flow for an example:
 .. |image17| image:: ../media/kylo-config/KC17.png
    :width: 6.59028in
    :height: 0.76042in
+
+ExecuteSparkContextJob Processor
+---------------------
+
+Execute Spark Context Job Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ExecuteSparkContextJob processor allows Spark jobs to be executed against existing Spark contexts. The processor uses a SparkJobService controller service, which manages the state of the contexts. If no context exists, a new context is created.
+
+Configuration
+~~~~~~~~~~~~~
+
+**1. App Name:** This is the name of the Jar which has been uploaded to the Jobserver.
+
+**2. Class Path:** The class path of the Spark Job to be executed.
+
+**3. Context Type:** The type of Spark context to be initialized. The Spark app which is running on the context expects a specific type of Spark context.
+
+**4. Context Name:** The key used for the long running Spark context. Common configurations are ${category}.${feed} to get per feed context, or ${category} to get per category context.
+
+**5. Spark App Args:** Named arguments to be passed into the Spark job. Jobserver uses Typesafe Config for Job arguments.
+
+**6. Spark Job Service:** The controller service which manages the Spark context.
+
+**7. Results Output Location:** When the Spark job has executed, it can return a value. This value can be either stored in a flow file attribute, or the flow file contents.
+
+**8. Context Timeout:** After n seconds, if the context has not been used, the context will be shutdown to reclaim resources.
+
+**9. Async:** Whether to execute the Spark job Asychronously or synchronously. Async execution will not resutn a resultset.
+
+**10. Number of Executors:** Number of executors for the Spark Context.
+
+**11. Memory Per Node:** Memory allocated to each executor.
+
+**12. Number of CPU Cores:** Number of cores per executor.
+
+Example Configuration for ExecuteSparkContextJob:
+
+|image20|
+
+.. |image20| image:: ../media/kylo-config/KC20.png
+   :width: 7.33825in
+   :height: 4.07839in
